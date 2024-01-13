@@ -8,6 +8,8 @@ Based on [Towards Disentangling Relevance and Bias in Unbiased Learning to Rank]
 - torch==2.1.2
 - xgboost==2.0.3
 
+Scripts are developed on Mac (M1, 8GB).
+
 ## Dataset generation
 Download [MSLR-WEB30K](https://www.microsoft.com/en-us/research/project/mslr/) dataset and unzip Fold1 into `datasets/MSLR-WEB30K-Fold1/` directory.
 
@@ -19,16 +21,17 @@ python3 src/datasets.py
 ## Evaluate
 Evaluation scripts are in `eval_scripts` directory. To use it, specify module path as
 ```
-PYTHONPATH="$(pwd)/src:${PYTHONPATH}" python3 eval_scripts/eval_linear.py
+export PYTHONPATH="$(pwd)/src:${PYTHONPATH}"
+python3 eval_scripts/eval_linear.py
 ```
 
 ## Results
 ### NDCG@5 for ground truth label
 
-| Oracle weight | Linear | Debiased Linear | XGBoost | Debaised XGBoost | Single Tower | Two Tower | Observation Dropout | Gradient Reversal |
+| $w$ |   Linear |   Debiased Linear |   XGBoost |   Debiased XGBoost |   Single Tower |   PAL (additive) |   Observation Dropout |   Gradient Reversal |
 |-|-|-|-|-|-|-|-|-|
-| 1.0 | 0.2952 | 0.3304 | 0.3095 | 0.1584 | 0.3104 | **0.3552** | 0.3360 | 0.3304 |
-| 0.8 | 0.2873 | 0.3172 | 0.2865 | 0.1914 | 0.3423 | 0.3392 | 0.3395 | **0.3442** |
-| 0.6 | 0.2812 | 0.3187 | 0.3062 | 0.1624 | 0.3091 | **0.3384** | 0.3366 | 0.3321 |
-| 0.2 | 0.2817 | 0.3170 | 0.2766 | 0.1590 | 0.2749 | 0.3195 | 0.3192 | **0.3328** |
-| 0.0 | 0.2740 | 0.3121 | 0.3006 | 0.1758 | 0.2867 | 0.3367 | 0.3353 | **0.3406** |
+| 1   | 0.2933 | 0.3242 | 0.3059 | 0.1712 | 0.3220 | 0.3465 | 0.3532 | **0.3600** |
+| 0.8 | 0.3009 | 0.3270 | 0.3044 | 0.2763 | 0.3068 | **0.3646** | 0.3548 | 0.3479 |
+| 0.6 | 0.2945 | 0.3251 | 0.2915 | 0.1829 | 0.3110 | 0.3520 | 0.3519 | **0.3551** |
+| 0.2 | 0.2828 | 0.3134 | 0.3189 | 0.1592 | 0.2743 | 0.3242 | 0.3358 | **0.3364** |
+| 0   | 0.2787 | 0.3145 | 0.2924 | 0.1595 | 0.2628 | 0.3239 | **0.3355** | 0.3254 |

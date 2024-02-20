@@ -3,11 +3,6 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-
-import wandb
 from data_utils import (
     get_clicks,
     get_features,
@@ -15,7 +10,11 @@ from data_utils import (
     get_position,
     get_unbiased_labels,
 )
-from metrics import calc_mean_ndcg
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+import wandb
 
 logger = logging.getLogger(__name__)
 

@@ -59,7 +59,6 @@ class NDCG(Metric):
         self.groups.append(groups.detach().cpu().reshape(-1))
 
     def compute(self) -> torch.Tensor:
-
         preds = dim_zero_cat(self.preds).numpy()
         labels = dim_zero_cat(self.labels).numpy()
         groups = dim_zero_cat(self.groups).numpy()

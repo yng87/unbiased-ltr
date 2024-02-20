@@ -1,16 +1,16 @@
 import lightning as L
 import pandas as pd
 import torch
+from data_utils import get_data_loader, get_features, get_group, get_unbiased_labels
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 from lightning.pytorch.callbacks.model_checkpoint import ModelCheckpoint
 from lightning.pytorch.loggers import WandbLogger
+from metrics import calc_mean_ndcg
+from nn_modules import GradientReversalTwoTower, TwoTower, TwoTowerBase
 from sklearn.preprocessing import StandardScaler
 from torch import nn
 
 import wandb
-from data_utils import get_data_loader, get_features, get_group, get_unbiased_labels
-from metrics import calc_mean_ndcg
-from nn_modules import GradientReversalTwoTower, TwoTower, TwoTowerBase
 
 N_FEATURES = 136
 

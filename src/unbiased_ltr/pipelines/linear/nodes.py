@@ -3,13 +3,12 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
+from data_utils import get_clicks, get_features, get_group, get_unbiased_labels
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 import wandb
-from data_utils import get_clicks, get_features, get_group, get_unbiased_labels
-from metrics import calc_mean_ndcg
 
 logger = logging.getLogger(__name__)
 

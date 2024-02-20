@@ -1,12 +1,10 @@
-from kedro.pipeline import Pipeline, node, pipeline
-
 from common_nodes import evaluate, predict_by_two_tower
+from kedro.pipeline import Pipeline, node, pipeline
 
 from .nodes import train
 
 
 def create_pipeline(**kwargs) -> Pipeline:
-
     base_pipelie = Pipeline(
         [
             node(

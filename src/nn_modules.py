@@ -1,10 +1,8 @@
 import lightning as L
 import torch
-import torch.nn as nn
-from torch import optim
-from torch.autograd import Function
-
 from metrics import NDCG
+from torch import nn, optim
+from torch.autograd import Function
 
 
 class SingleTower(L.LightningModule):

@@ -3,13 +3,12 @@ import logging
 import lightning as L
 import pandas as pd
 import torch
+from data_utils import get_data_loader, get_features, get_group, get_unbiased_labels
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 from lightning.pytorch.callbacks.model_checkpoint import ModelCheckpoint
 from lightning.pytorch.loggers import WandbLogger
-from sklearn.preprocessing import StandardScaler
-
-from data_utils import get_data_loader, get_features, get_group, get_unbiased_labels
 from nn_modules import SingleTower
+from sklearn.preprocessing import StandardScaler
 
 logger = logging.getLogger(__name__)
 

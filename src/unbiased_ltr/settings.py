@@ -3,11 +3,10 @@ from the Kedro defaults. For further information, including these default values
 https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
 # Class that manages how configuration is loaded.
-from kedro.config import OmegaConfigLoader  # noqa: E402
-
 # Instantiated project hooks.
 # For example, after creating a hooks.py and defining a ProjectHooks class there, do
 from hooks import WandbHook
+from kedro.config import OmegaConfigLoader  # noqa: E402
 
 # Hooks are executed in a Last-In-First-Out (LIFO) order.
 HOOKS = (WandbHook(),)

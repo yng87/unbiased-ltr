@@ -4,9 +4,6 @@ from typing import Any
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-from wandb.xgboost import WandbCallback
-
-import wandb
 from data_utils import (
     get_clicks,
     get_features,
@@ -14,7 +11,9 @@ from data_utils import (
     get_unbiased_labels,
     sort_by_group,
 )
-from metrics import calc_mean_ndcg
+
+import wandb
+from wandb.xgboost import WandbCallback
 
 logger = logging.getLogger(__name__)
 

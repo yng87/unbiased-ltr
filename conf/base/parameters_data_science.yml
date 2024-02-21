@@ -12,7 +12,7 @@ model_params_xgboost:
   lambdarank_num_pair_per_sample: 10  # slightly higher than 5
   objective: "rank:ndcg"
   eval_metric: ["ndcg@5"]
-  early_stopping_rounds: 20
+  early_stopping_rounds: 5
   random_state: 42
 
 model_params_single_tower:

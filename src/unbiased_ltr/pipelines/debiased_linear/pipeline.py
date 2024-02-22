@@ -10,7 +10,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=train,
                 inputs=[
-                    "web30k_synthetic_click_train",
+                    "web30k_synthetic_click_train_downsampled",
                     "params:model_params_debiased_linear",
                 ],
                 outputs="model_debiased_linear",

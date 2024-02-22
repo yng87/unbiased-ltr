@@ -64,26 +64,10 @@ def _generate_clicks(
     return clicks.astype(np.int32)
 
 
-def _negative_down_sample(
-    df: pd.DataFrame, ratio: float, random_seed: int
-) -> pd.DataFrame:
-    if ratio < 0 or ratio > 1:
-        raise ValueError("ratio must be between 0 and 1")
-
-    rng = np.random.default_rng(random_seed)
-
-    pos_mask = df["click"] == 1
-    neg_mask = (df["click"] == 0) & (rng.uniform(size=len(df)) < ratio)
-    mask = pos_mask | neg_mask
-
-    return df[mask]
-
-
 def generate_synthetic_clicks_dataset(
     web30k_dataset: pd.DataFrame,
     click_noise: float,
     oracle_weight: float,
-    negative_downsample_ratio: float,
     random_seed: int,
 ) -> pd.DataFrame:
     if click_noise < 0 or click_noise > 1:
@@ -107,4 +91,19 @@ def generate_synthetic_clicks_dataset(
     df["click"] = clicks
     df["position"] = positions
 
-    return _negative_down_sample(df, negative_downsample_ratio, random_seed)
+    return df
+
+
+def negative_down_sample(
+    df: pd.DataFrame, ratio: float, random_seed: int
+) -> pd.DataFrame:
+    if ratio < 0 or ratio > 1:
+        raise ValueError("ratio must be between 0 and 1")
+
+    rng = np.random.default_rng(random_seed)
+
+    pos_mask = df["click"] == 1
+    neg_mask = (df["click"] == 0) & (rng.uniform(size=len(df)) < ratio)
+    mask = pos_mask | neg_mask
+
+    return df[mask]

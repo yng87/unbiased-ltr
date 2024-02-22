@@ -10,7 +10,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=train,
                 inputs={
-                    "df_train": "web30k_synthetic_click_train",
+                    "df_train": "web30k_synthetic_click_train_downsampled",
                     "df_val": "web30k_synthetic_click_vali",
                     "batch_size": "params:model_params_grad_rev.batch_size",
                     "max_position": "params:model_params_grad_rev.max_position",

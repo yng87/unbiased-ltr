@@ -1,6 +1,10 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import generate_synthetic_clicks_dataset, preprocess_raw_web30k_dataset
+from .nodes import (
+    generate_synthetic_clicks_dataset,
+    negative_down_sample,
+    preprocess_raw_web30k_dataset,
+)
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -25,22 +29,32 @@ def create_pipeline(**kwargs) -> Pipeline:
                     f"web30k_fold1_{split}_preprocessed",
                     "params:click_noise",
                     "params:dataset_oracle_weight",
-                    "params:negative_downsample_ratio",
                     "params:random_seed",
                 ],
                 outputs=f"web30k_synthetic_click_{split}",
                 name=f"generate_synthetic_{split}_node",
                 tags=["synthetic"],
             )
-            for split in ["train", "vali", "test"]
+            for split in ["train", "vali"]
+        ]
+        + [
+            node(
+                func=negative_down_sample,
+                inputs=[
+                    "web30k_synthetic_click_train",
+                    "params:negative_downsample_ratio",
+                    "params:random_seed",
+                ],
+                outputs="web30k_synthetic_click_train_downsampled",
+                name="negative_downsample_train_node",
+            )
         ]
     )
     synthetic_pipelines = [
         pipeline(
             pipe=synthetic_pipeline,
             inputs={
-                f"web30k_fold1_{split}_preprocessed"
-                for split in ["train", "vali", "test"]
+                f"web30k_fold1_{split}_preprocessed" for split in ["train", "vali"]
             },
             parameters={
                 "params:click_noise",

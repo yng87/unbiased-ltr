@@ -10,6 +10,10 @@ web30k_fold1_{split}_preprocessed:
   type: pandas.ParquetDataset
   filepath: data/03_primary/{namespace}/synthetic_click_{split}.pq
 
+"{namespace}.web30k_synthetic_click_{split}_downsampled":
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/{namespace}/synthetic_click_{split}.pq
+
 "{namespace}.model_{model}":
   type: pickle.PickleDataset
   filepath: data/06_models/{namespace}/{model}/model.pkl

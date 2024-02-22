@@ -1,0 +1,46 @@
+model_params_linear:
+  penalty: l2
+  C: 1.0
+  max_iter: 100
+  solver: newton-cholesky
+  random_state: 42
+
+model_params_xgboost:
+  tree_method: "hist"
+  n_estimators: 100
+  lambdarank_pair_method: "topk"
+  lambdarank_num_pair_per_sample: 10  # slightly higher than 5
+  objective: "rank:ndcg"
+  eval_metric: ["ndcg@5"]
+  early_stopping_rounds: 5
+  random_state: 42
+
+model_params_single_tower:
+  batch_size: 32
+  learning_rate: 1e-3
+  max_epochs: 30
+  weight_decay: 1e-5
+
+model_params_two_tower:
+  batch_size: 32
+  learning_rate: 1e-3
+  max_epochs: 30
+  weight_decay: 1e-5
+  max_position: 120
+
+model_params_obs_dropout:
+  batch_size: 32
+  learning_rate: 1e-3
+  max_epochs: 30
+  weight_decay: 1e-5
+  max_position: 120
+  dropout_prob: 0.2
+
+model_params_grad_rev:
+  batch_size: 32
+  learning_rate: 1e-3
+  max_epochs: 30
+  weight_decay: 1e-5
+  max_position: 120
+  grad_rev_scale: 0.8
+

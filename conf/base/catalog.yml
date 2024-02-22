@@ -1,0 +1,35 @@
+web30k_fold1_{split}:
+  type: text.TextDataset
+  filepath: data/01_raw/MSLR-WEB30K-Fold1/{split}.txt
+
+web30k_fold1_{split}_preprocessed:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/{split}_preprocessed.pq
+
+"{namespace}.web30k_synthetic_click_{split}":
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/{namespace}/synthetic_click_{split}.pq
+
+"{namespace}.web30k_synthetic_click_{split}_downsampled":
+  type: pandas.ParquetDataset
+  filepath: data/05_model_input/{namespace}/synthetic_click_{split}.pq
+
+"{namespace}.model_{model}":
+  type: pickle.PickleDataset
+  filepath: data/06_models/{namespace}/{model}/model.pkl
+
+"{namespace}.preprocessor_{model}":
+  type: pickle.PickleDataset
+  filepath: data/06_models/{namespace}/{model}/preprocessor.pkl
+
+"{namespace}.checkpoint_path_{model}":
+  type: text.TextDataset
+  filepath: data/06_models/{namespace}/{model}/ckpt_path.txt
+
+"{namespace}.predictions_{model}":
+  type: pandas.ParquetDataset
+  filepath: data/07_model_output/{namespace}/{model}/predictions.pq
+
+"{namespace}.metrics_{model}":
+  type: json.JSONDataset
+  filepath: data/08_reporting/{namespace}/{model}/metrics.json

@@ -58,8 +58,8 @@ def train_two_tower(
         nn.ReLU(),
         nn.Linear(64, 32),
         nn.ReLU(),
-        nn.Dropout(p=dropout_prob) if dropout_prob > 0 else nn.Identity(),
         nn.Linear(32, 1),
+        nn.Dropout(p=dropout_prob) if dropout_prob > 0 else nn.Identity(),
     )
     if grad_rev_scale > 0:
         model: TwoTowerBase = GradientReversalTwoTower(

@@ -31,6 +31,10 @@ def sort_by_group(df: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values(by="query")
 
 
+def sort_by_group_and_position(df: pd.DataFrame) -> pd.DataFrame:
+    return df.sort_values(by=["query", "position"])
+
+
 class Web30KSyntheticClickDataset(Dataset):
     def __init__(self, features, clicks, groups, positions=None):
         self.features = features

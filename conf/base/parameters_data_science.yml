@@ -15,6 +15,11 @@ model_params_xgboost:
   early_stopping_rounds: 5
   random_state: 42
 
+model_params_lightgbm:
+  n_estimators: 100
+  objective: "lambdarank"
+  random_state: 42
+
 model_params_single_tower:
   batch_size: 32
   learning_rate: 1e-3

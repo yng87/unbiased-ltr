@@ -10,6 +10,9 @@ models=(
     "two_tower"
     "obs_dropout"
     "grad_rev"
+    "debiased_xgboost_ipw"
+    "lightgbm"
+    "debiased_lightgbm"
 )
 oracle_weights=(
     "w0"
